@@ -12,9 +12,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-html{
-  padding: 10px;
-}
+
 *{
   box-sizing: border-box;
 }
@@ -34,7 +32,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background-color: #efefef;
-  border-radius: 20px ;
+  
 }
 
 h1 {
