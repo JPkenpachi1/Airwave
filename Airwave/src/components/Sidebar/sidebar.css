@@ -1,12 +1,12 @@
 .sidebarContainer {
- height: 100vh;
-background-color: #242424;
-width: 200px;
-position: absolute;
-top:0;
-transition: width 0.3s ease-in-out, transform 0.3s ease-in-out;
-transform-origin: left;
-}
+    height: 100vh;
+    background-color: var(--secondary-color);
+    width: 200px;
+    position: absolute;
+    top: 0;
+    transition: width 0.3s ease-in-out, transform 0.3s ease-in-out;
+    transform-origin: left;
+  }
 .sideClicked{
     width: 50px;
     transform: scaleX(0.9); /* Slightly scale down on click */
@@ -50,6 +50,7 @@ transform-origin: left;
     padding: 10px;
     border-radius: 50%; /* Makes the icon container circular */
     transition: transform 0.2s ease, background-color 0.2s ease;
+    color: var(--font-color);
 }
 
 .hamburger-icon.clicked {

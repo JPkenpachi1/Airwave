@@ -1,4 +1,4 @@
-:root {
+/* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -11,7 +11,21 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+} */
+
+:root {
+  --font-color: #242424;
+  --background-color: #ffffff;
+  --secondary-color: #f0f0f0;
 }
+
+/* Dark mode */
+[data-theme="dark"] {
+  --font-color: rgba(255, 255, 255, 0.87);
+  --background-color: #242424;
+  --secondary-color: #2c2c2c;
+}
+/* Dark mode theme */
 
 *{
   box-sizing: border-box;
@@ -26,20 +40,22 @@ a:hover {
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-  background-color: #efefef;
-  
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--font-color);
+  background-color: var(--background-color);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
-
+/* 
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -57,6 +73,43 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+} */
+
+
+.themeButton {
+  position: relative;
+  background: none;
+  border: none; 
+  cursor: pointer;
+  font-size: 24px; /* Adjust as needed */
+  color: #242424;
+  overflow: hidden; /* Ensure icons do not overflow */
+  transition: color 0.3s ease;
+}
+
+.themeButton .icon {
+  position: absolute;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.themeButton .icon.sun {
+  opacity: 1;
+}
+
+.themeButton .icon.moon {
+  opacity: 0;
+  transform: translateY(-10px); /* Move up slightly to give a fading effect */
+}
+
+/* When theme is toggled */
+.themeButton.dark-mode .icon.sun {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.themeButton.dark-mode .icon.moon {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 @media (prefers-color-scheme: light) {

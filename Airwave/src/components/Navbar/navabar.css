@@ -1,0 +1,11 @@
+nav {
+    left: 200px;
+    position: absolute;
+    width: calc(100% - 200px); 
+    transition: left 0.3s ease, width 0.3s ease; /* Smooth transition */
+}
+
+.nav-collapsed {
+    left: 45px;
+    width: calc(100% - 45px); 
+}
