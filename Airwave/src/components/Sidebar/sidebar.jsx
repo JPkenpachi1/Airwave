@@ -1,6 +1,7 @@
 import React from 'react';
 import './sidebar.css';
 import { RxHamburgerMenu } from "react-icons/rx";
+import { Link } from 'react-router-dom';
 
 const Sidebar = ({ isClicked, sidebarclick, navToggle, handleClick }) => {
     return (
@@ -14,9 +15,9 @@ const Sidebar = ({ isClicked, sidebarclick, navToggle, handleClick }) => {
                 </div>
                 <div className="sidebar">
                     <ul className="sidebarLinks">
-                        <li className="sidelinks">Home</li>
-                        <li className="sidelinks">Complaints</li>
-                        <li className="sidelinks">Reports</li>
+                        <li className="sidelinks"><Link to="/home">Home</Link></li>
+                        <li className="sidelinks"><Link to="/reports">Reports</Link></li>
+                        <li className="sidelinks"><Link to="/complaints">Complaints</Link></li>
                         <li className="sidelinks">Chat</li>
                         <li className="sidelinks">Misc</li>
                     </ul>

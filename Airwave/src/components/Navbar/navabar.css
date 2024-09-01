@@ -9,3 +9,19 @@ nav {
     left: 45px;
     width: calc(100% - 45px); 
 }
+
+
+.dashboard__container{
+   background-color:var(--secondary-color);
+   padding: 10px;
+   position: absolute;
+   height: auto;
+   left:200px;
+   width: calc(100% - 200px); 
+   transition: left 0.3s ease, width 0.3s ease; /* Smooth transition */
+
+}
+.dashboard__container.nav-collapsed {
+    left: 50px;
+    width: calc(100% - 50px);
+}
