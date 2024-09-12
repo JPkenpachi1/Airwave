@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './pages/home';
 import Reports from './pages/report';
 import Complaints from './pages/complaints';
+import EnquiryForm from './pages/enquiry';
 function App() {
   return (
     <Router>
@@ -14,6 +15,7 @@ function App() {
         <Route path="home" element={<Home />} />
                     <Route path="reports" element={<Reports />} />
                     <Route path="complaints" element={<Complaints />} />
+                    <Route path='enquiry' element={<EnquiryForm/>} />
         </Route>
        
       </Routes>

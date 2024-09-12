@@ -18,6 +18,7 @@ const Sidebar = ({ isClicked, sidebarclick, navToggle, handleClick }) => {
                         <li className="sidelinks"><Link to="/home">Home</Link></li>
                         <li className="sidelinks"><Link to="/reports">Reports</Link></li>
                         <li className="sidelinks"><Link to="/complaints">Complaints</Link></li>
+                        <li className="sidelinks"><Link to="/enquiry">Enquiry</Link></li>
                         <li className="sidelinks">Chat</li>
                         <li className="sidelinks">Misc</li>
                     </ul>
