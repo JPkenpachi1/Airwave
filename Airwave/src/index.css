@@ -20,7 +20,11 @@
 :root {
   --font-color: #242424;
   --background-color: #ffffff;
-  --secondary-color: #f0f0f0;
+  --secondary-color: #efefef;
+  --form-bg:#f5f5f5;
+  --from-border:1px solid #f5f5f5;
+  --text-color:#737373;
+
 }
 
 /* Dark mode */
@@ -28,6 +32,9 @@
   --font-color: rgba(255, 255, 255, 0.87);
   --background-color: #242424;
   --secondary-color: #2c2c2c;
+  --form-bg:#404040;
+  --form-border:1px solid #404040;
+  --text-color:#a3a3a3;
 }
 /* Dark mode theme */
 
@@ -78,8 +85,21 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 } */
-
-
+.form-control{
+  background-color: var(--form-bg);
+  color: var(--text-color);
+  border: var(--form-border);
+}
+.form-control:focus{
+  background-color: var(--form-bg);
+}
+.form-control::placeholder{
+  color: var(--text-color);
+}
+.navbar{
+  background-color:var(--secondary-color);
+  color:var(--font-color);
+}
 .themeButton {
   position: relative;
   background: none;

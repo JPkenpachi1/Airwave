@@ -1,22 +1,24 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import ToastComponent from '../components/widgets/toast';
+import axiosInstance from '../config/axios';
 
 const EnquiryForm = () => {
   const [formData, setFormData] = useState({
-    enquiryStartDate: '',
-    bookingDate: '',
-    enquiryCloserDate: '',
+    enquiry_start_date: '',
+    booking_date: '',
+    enquiry_closer_date: '',
     name: '',
     address: '',
     area: '',
-    contactNo: '',
-    enquiryState: '',
-    enquiryStatus: '',
-    assignedTo: '',
-    submittedBy: '',
-    resolutionSummary: '',
+    contact_no: '',
+    enquiry_state: '',
+    enquiry_status: '',
+    assigned_to: '',
+    submitted_by: '',
+    resolution_summary: '',
     remarks: '',
-    endingStatus: ''
+    ending_status: ''
   });
 
   const handleChange = (e) => {
@@ -24,48 +26,95 @@ const EnquiryForm = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+  const [toastVariant, setToastVariant] = useState('Primary');
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form data submitted:', formData);
-    // Add submission logic here (e.g., API call)
+    
+    // Show toast for submission start (optional)
+    setToastVariant('Info');
+    setToastMessage('Submitting form data...');
+    setShowToast(true);
+    
+    axiosInstance.post('enquiries/', formData)
+      .then(response => {
+        // Success toast message
+        setToastVariant('Success');
+        setToastMessage('Form submitted successfully!');
+        setShowToast(true);
+        
+        // Reset form data after success if needed
+        setFormData({
+          enquiry_start_date: '',
+          booking_date: '',
+          enquiry_closer_date: '',
+          name: '',
+          address: '',
+          area: '',
+          contact_no: '',
+          enquiry_state: '',
+          enquiry_status: '',
+          assigned_to: '',
+          submitted_by: '',
+          resolution_summary: '',
+          remarks: '',
+          ending_status: ''
+        });
+      })
+      .catch(error => {
+        // Error toast message
+        setToastVariant('Danger');
+        setToastMessage('Failed to submit form data. Please try again.');
+        setShowToast(true);
+        console.error('Error submitting form:', error);
+      });
   };
 
   return (
     <Container>
+      <ToastComponent 
+        variant={toastVariant} 
+        message={toastMessage} 
+        showToast={showToast} 
+        setShowToast={setShowToast} 
+      />
       <h2 className="mb-4">Enquiry Management Form</h2>
+     
       <Form onSubmit={handleSubmit}>
         {/* Enquiry Dates */}
         <Row className="mb-3">
           <Col>
-            <Form.Group controlId="enquiryStartDate">
+            <Form.Group controlId="enquiry_start_date">
               <Form.Label>Enquiry Start Date</Form.Label>
               <Form.Control
                 type="date"
-                name="enquiryStartDate"
-                value={formData.enquiryStartDate}
+                name="enquiry_start_date"
+                value={formData.enquiry_start_date}
                 onChange={handleChange}
                 required
               />
             </Form.Group>
           </Col>
           <Col>
-            <Form.Group controlId="bookingDate">
+            <Form.Group controlId="booking_date">
               <Form.Label>Booking Date</Form.Label>
               <Form.Control
                 type="date"
-                name="bookingDate"
-                value={formData.bookingDate}
+                name="booking_date"
+                value={formData.booking_date}
                 onChange={handleChange}
               />
             </Form.Group>
           </Col>
           <Col>
-            <Form.Group controlId="enquiryCloserDate">
+            <Form.Group controlId="enquiry_closer_date">
               <Form.Label>Enquiry Closer Date</Form.Label>
               <Form.Control
                 type="date"
-                name="enquiryCloserDate"
-                value={formData.enquiryCloserDate}
+                name="enquiry_closer_date"
+                value={formData.enquiry_closer_date}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -117,13 +166,13 @@ const EnquiryForm = () => {
             </Form.Group>
           </Col>
           <Col>
-            <Form.Group controlId="contactNo">
+            <Form.Group controlId="contact_no">
               <Form.Label>Contact Number</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter contact number"
-                name="contactNo"
-                value={formData.contactNo}
+                name="contact_no"
+                value={formData.contact_no}
                 onChange={handleChange}
                 required
               />
@@ -134,12 +183,12 @@ const EnquiryForm = () => {
         {/* Enquiry State and Status */}
         <Row className="mb-3">
           <Col>
-            <Form.Group controlId="enquiryState">
+            <Form.Group controlId="enquiry_state">
               <Form.Label>Enquiry State</Form.Label>
               <Form.Control
                 as="select"
-                name="enquiryState"
-                value={formData.enquiryState}
+                name="enquiry_state"
+                value={formData.enquiry_state}
                 onChange={handleChange}
               >
                 <option>Select Enquiry State</option>
@@ -150,12 +199,12 @@ const EnquiryForm = () => {
             </Form.Group>
           </Col>
           <Col>
-            <Form.Group controlId="enquiryStatus">
+            <Form.Group controlId="enquiry_status">
               <Form.Label>Enquiry Status</Form.Label>
               <Form.Control
                 as="select"
-                name="enquiryStatus"
-                value={formData.enquiryStatus}
+                name="enquiry_status"
+                value={formData.enquiry_status}
                 onChange={handleChange}
               >
                 <option>Select Enquiry Status</option>
@@ -170,25 +219,25 @@ const EnquiryForm = () => {
         {/* Assigned To and Submitted By */}
         <Row className="mb-3">
           <Col>
-            <Form.Group controlId="assignedTo">
+            <Form.Group controlId="assigned_to">
               <Form.Label>Assigned To</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter the name of person assigned to"
-                name="assignedTo"
-                value={formData.assignedTo}
+                name="assigned_to"
+                value={formData.assigned_to}
                 onChange={handleChange}
               />
             </Form.Group>
           </Col>
           <Col>
-            <Form.Group controlId="submittedBy">
+            <Form.Group controlId="submitted_by">
               <Form.Label>Submitted By</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter the submitter's name"
-                name="submittedBy"
-                value={formData.submittedBy}
+                name="submitted_by"
+                value={formData.submitted_by}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -198,14 +247,14 @@ const EnquiryForm = () => {
         {/* Resolution Summary and Remarks */}
         <Row className="mb-3">
           <Col>
-            <Form.Group controlId="resolutionSummary">
+            <Form.Group controlId="resolution_summary">
               <Form.Label>Resolution Summary</Form.Label>
               <Form.Control
                 as="textarea"
                 rows={3}
                 placeholder="Enter resolution summary"
-                name="resolutionSummary"
-                value={formData.resolutionSummary}
+                name="resolution_summary"
+                value={formData.resolution_summary}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -228,12 +277,12 @@ const EnquiryForm = () => {
         {/* Ending Status */}
         <Row className="mb-3">
           <Col>
-            <Form.Group controlId="endingStatus">
+            <Form.Group controlId="ending_status">
               <Form.Label>Ending Status</Form.Label>
               <Form.Control
                 as="select"
-                name="endingStatus"
-                value={formData.endingStatus}
+                name="ending_status"
+                value={formData.ending_status}
                 onChange={handleChange}
               >
                 <option>Select Ending Status</option>

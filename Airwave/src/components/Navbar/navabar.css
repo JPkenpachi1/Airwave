@@ -3,6 +3,7 @@ nav {
     position: absolute;
     width: calc(100% - 200px); 
     transition: left 0.3s ease, width 0.3s ease; /* Smooth transition */
+    background-color:var(--secondary-color);
 }
 
 .nav-collapsed {
