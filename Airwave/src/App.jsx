@@ -6,6 +6,7 @@ import Reports from './pages/report';
 import Complaints from './pages/complaints';
 import EnquiryForm from './pages/enquiry';
 import Login from './pages/login';
+import Users from './pages/Users';
 function App() {
   const isAuthenticated = !!localStorage.getItem('access_token'); // Check if user is authenticated
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />} >
         
         <Route path="/home" element={<Home />} />
+        <Route path="/users" element={<Users/>}/>
                     <Route path="reports" element={<Reports />} />
                     <Route path="complaints" element={<Complaints />} />
                     <Route path='enquiry' element={<EnquiryForm/>} />

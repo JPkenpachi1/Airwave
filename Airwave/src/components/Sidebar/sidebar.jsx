@@ -16,11 +16,11 @@ const Sidebar = ({ isClicked, sidebarclick, navToggle, handleClick }) => {
                 <div className="sidebar">
                     <ul className="sidebarLinks">
                         <li className="sidelinks"><Link to="/home">Home</Link></li>
+                        <li className="sidelinks"><Link to="/users">New Users</Link></li>
                         <li className="sidelinks"><Link to="/reports">Reports</Link></li>
                         <li className="sidelinks"><Link to="/complaints">Complaints</Link></li>
                         <li className="sidelinks"><Link to="/enquiry">Enquiry</Link></li>
-                        <li className="sidelinks">Chat</li>
-                        <li className="sidelinks">Misc</li>
+                       
                     </ul>
                 </div>
             </div>
