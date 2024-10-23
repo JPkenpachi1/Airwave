@@ -12,7 +12,7 @@ const Complaint = () => {
     complaint_type: '',
     complaint_description: '',
     status: 'open', // Set default status
-    technician: 1 
+    technician: 1
   });
 
   const [showToast, setShowToast] = useState(false);
@@ -68,112 +68,137 @@ const Complaint = () => {
         setShowToast={setShowToast} 
       />
       <Row className="justify-content-md-center">
-        <Col md={6}>
+        <Col md={8}>
           <h2 className="mb-4">Complaint Management Form</h2>
           <Form onSubmit={handleSubmit}>
-            {/* Name */}
-            <Form.Group controlId="formName" className="mb-3">
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter your name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
+            <Row>
+              <Col md={6}>
+                {/* Name */}
+                <Form.Group controlId="formName" className="mb-3">
+                  <Form.Label>Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter your name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                  />
+                </Form.Group>
+              </Col>
 
-            {/* Phone Number */}
-            <Form.Group controlId="formPhone" className="mb-3">
-              <Form.Label>Phone Number</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter your phone number"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
+              <Col md={6}>
+                {/* Phone Number */}
+                <Form.Group controlId="formPhone" className="mb-3">
+                  <Form.Label>Phone Number</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter your phone number"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    required
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
 
-            {/* Optional Phone Number 2 */}
-            <Form.Group controlId="formPhone2" className="mb-3">
-              <Form.Label>Optional Phone Number 2</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter an alternative phone number (optional)"
-                name="phone2"
-                value={formData.phone2}
-                onChange={handleChange}
-              />
-            </Form.Group>
+            <Row>
+              <Col md={6}>
+                {/* Optional Phone Number 2 */}
+                <Form.Group controlId="formPhone2" className="mb-3">
+                  <Form.Label>Optional Phone Number 2</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter an alternative phone number (optional)"
+                    name="phone2"
+                    value={formData.phone2}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+              </Col>
 
-            {/* Address */}
-            <Form.Group controlId="formAddress" className="mb-3">
-              <Form.Label>Address</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={3}
-                placeholder="Enter your address"
-                name="address"
-                value={formData.address}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
+              <Col md={6}>
+                {/* Address */}
+                <Form.Group controlId="formAddress" className="mb-3">
+                  <Form.Label>Address</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows={2}
+                    placeholder="Enter your address"
+                    name="address"
+                    value={formData.address}
+                    onChange={handleChange}
+                    required
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
 
-            {/* Complaint Type */}
-            <Form.Group controlId="formComplaintType" className="mb-3">
-              <Form.Label>Complaint Type</Form.Label>
-              <Form.Control
-                as="select"
-                name="complaint_type"
-                value={formData.complaint_type}
-                onChange={handleChange}
-                required
-              >
-                <option value="">Select Complaint Type</option>
-                <option value="service">Service</option>
-                <option value="product">Product</option>
-                <option value="billing">Billing</option>
-                <option value="other">Other</option>
-              </Form.Control>
-            </Form.Group>
+            <Row>
+              <Col md={6}>
+                {/* Complaint Type */}
+                <Form.Group controlId="formComplaintType" className="mb-3">
+                  <Form.Label>Complaint Type</Form.Label>
+                  <Form.Control
+                    as="select"
+                    name="complaint_type"
+                    value={formData.complaint_type}
+                    onChange={handleChange}
+                    required
+                  >
+                    <option value="">Select Complaint Type</option>
+                    <option value="service">Service</option>
+                    <option value="product">Product</option>
+                    <option value="billing">Billing</option>
+                    <option value="other">Other</option>
+                  </Form.Control>
+                </Form.Group>
+              </Col>
 
-            {/* Complaint Description */}
-            <Form.Group controlId="formDescription" className="mb-3">
-              <Form.Label>Complaint Description</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={5}
-                placeholder="Enter the details of your complaint"
-                name="complaint_description"
-                value={formData.complaint_description}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
+              <Col md={6}>
+                {/* Status */}
+                <Form.Group controlId="formStatus" className="mb-3">
+                  <Form.Label>Status</Form.Label>
+                  <Form.Control
+                    as="select"
+                    name="status"
+                    value={formData.status}
+                    onChange={handleChange}
+                  >
+                    <option value="open">Open</option>
+                    <option value="resolved">Resolved</option>
+                    <option value="in-progress">In Progress</option>
+                  </Form.Control>
+                </Form.Group>
+              </Col>
+            </Row>
 
-            {/* Status */}
-            <Form.Group controlId="formStatus" className="mb-3">
-              <Form.Label>Status</Form.Label>
-              <Form.Control
-                as="select"
-                name="status"
-                value={formData.status}
-                onChange={handleChange}
-              >
-                <option value="open">Open</option>
-                <option value="resolved">Resolved</option>
-                <option value="in-progress">In Progress</option>
-              </Form.Control>
-            </Form.Group>
+            <Row>
+              <Col>
+                {/* Complaint Description */}
+                <Form.Group controlId="formDescription" className="mb-3">
+                  <Form.Label>Complaint Description</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows={4}
+                    placeholder="Enter the details of your complaint"
+                    name="complaint_description"
+                    value={formData.complaint_description}
+                    onChange={handleChange}
+                    required
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
 
-            {/* Submit Button */}
-            <Button variant="primary" type="submit">
-              Submit Complaint
-            </Button>
+            <Row>
+              <Col className="text-center">
+                <Button variant="primary" type="submit">
+                  Submit Complaint
+                </Button>
+              </Col>
+            </Row>
           </Form>
         </Col>
       </Row>

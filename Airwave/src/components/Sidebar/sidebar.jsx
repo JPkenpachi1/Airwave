@@ -2,7 +2,7 @@ import React from 'react';
 import './sidebar.css';
 import { RxHamburgerMenu } from "react-icons/rx";
 import { Link } from 'react-router-dom';
-
+import { FaHome, FaUserPlus, FaChartBar, FaExclamationCircle, FaQuestionCircle,FaTools } from 'react-icons/fa'; // Example icons from FontAwesome
 const Sidebar = ({ isClicked, sidebarclick, navToggle, handleClick }) => {
     return (
         <>
@@ -13,15 +13,27 @@ const Sidebar = ({ isClicked, sidebarclick, navToggle, handleClick }) => {
                         onClick={handleClick} 
                     />
                 </div>
-                <div className="sidebar">
-                    <ul className="sidebarLinks">
-                        <li className="sidelinks"><Link to="/home">Home</Link></li>
-                        <li className="sidelinks"><Link to="/users">New Users</Link></li>
-                        <li className="sidelinks"><Link to="/reports">Reports</Link></li>
-                        <li className="sidelinks"><Link to="/complaints">Complaints</Link></li>
-                        <li className="sidelinks"><Link to="/enquiry">Enquiry</Link></li>
-                       
-                    </ul>
+                <div className="sidebar ">
+                <ul className="sidebarLinks d-flex flex-column">
+                <Link className={`sidelinks ${sidebarclick ? 'collapsedLinks' : ''}`} to="/home">
+        <FaHome className="me-2" /> {sidebarclick ? null : 'Home'}
+      </Link>
+      <Link className={`sidelinks ${sidebarclick ? 'collapsedLinks' : ''}`} to="/users">
+        <FaUserPlus className="me-2" /> {sidebarclick ? null : 'New Users'}
+      </Link>
+      <Link className={`sidelinks ${sidebarclick ? 'collapsedLinks' : ''}`} to="/reports">
+        <FaChartBar className="me-2" /> {sidebarclick ? null : 'Reports'}
+      </Link>
+      <Link className={`sidelinks ${sidebarclick ? 'collapsedLinks' : ''}`} to="/complaints">
+        <FaExclamationCircle className="me-2" /> {sidebarclick ? null : 'Complaints'}
+      </Link>
+      <Link className={`sidelinks ${sidebarclick ? 'collapsedLinks' : ''}`} to="/enquiry">
+        <FaQuestionCircle className="me-2" /> {sidebarclick ? null : 'Enquiry'}
+      </Link>
+      <Link className="sidelinks" to="/tech">
+          <FaTools className="me-2" /> Technicians
+        </Link>
+      </ul>
                 </div>
             </div>
         </>

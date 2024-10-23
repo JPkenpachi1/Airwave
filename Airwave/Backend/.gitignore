@@ -1,0 +1,65 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Django stuff:
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+*.pdb
+
+# If you're using SQLite database
+*.db
+
+# Django migrations
+*/migrations/*.py
+*/migrations/*.pyc
+*/migrations/*.pyo
+
+# ENV for virtual environment
+env/
+venv/
+ENV/
+VENV/
+.env
+.env.*
+
+# Secrets and local settings
+*.local
+.local
+secrets.json
+
+# IDE specific files (e.g., Visual Studio Code, PyCharm)
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
+
+# Test outputs
+coverage/
+*.cover
+.hypothesis/
+
+# pytest
+.pytest_cache/
+
+# Other
+*.log
+logs/
+*.swp
+*.swo
+
+# Static and media files
+staticfiles/
+media/
+
+# Ignore file storage created during tests
+test-results/

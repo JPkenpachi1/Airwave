@@ -3,17 +3,18 @@ nav {
     position: absolute;
     width: calc(100% - 200px); 
     transition: left 0.3s ease, width 0.3s ease; /* Smooth transition */
-    background-color:var(--secondary-color);
+    background-color:var(--secondary-color) !important;
+    color: var(--text-color);
 }
 
 .nav-collapsed {
-    left: 45px;
-    width: calc(100% - 45px); 
+    left: 65px;
+    width: calc(100% - 65px); 
 }
 
 
 .dashboard__container{
-   background-color:var(--secondary-color);
+   background-color:var(--backgroudn-color);
    padding: 10px;
    position: absolute;
    height: auto;

@@ -97,8 +97,12 @@ button:focus-visible {
   color: var(--text-color);
 }
 .navbar{
-  background-color:var(--secondary-color);
+  background-color:var(--secondary-color) !important;
   color:var(--font-color);
+}
+.navbar a{
+  color:var(--font-color);
+
 }
 .themeButton {
   position: relative;

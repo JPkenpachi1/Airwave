@@ -12,7 +12,7 @@ const NavBar = ({ navToggle }) => {
             className={`bg-body-tertiary ${navToggle ? 'nav-collapsed' : ''}`}
         >
             <Container fluid>
-                <Navbar.Brand href="#">Navbar</Navbar.Brand>
+                <Navbar.Brand href="#">AirWave</Navbar.Brand>
                 <ThemeToggle/>
                 
             </Container>

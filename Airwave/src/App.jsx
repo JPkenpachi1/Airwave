@@ -7,6 +7,7 @@ import Complaints from './pages/complaints';
 import EnquiryForm from './pages/enquiry';
 import Login from './pages/login';
 import Users from './pages/Users';
+import TechnicianForm from './pages/tech';
 function App() {
   const isAuthenticated = !!localStorage.getItem('access_token'); // Check if user is authenticated
   return (
@@ -21,6 +22,7 @@ function App() {
                     <Route path="reports" element={<Reports />} />
                     <Route path="complaints" element={<Complaints />} />
                     <Route path='enquiry' element={<EnquiryForm/>} />
+                    <Route path='tech' element={<TechnicianForm/>}/>
         </Route>
        
       </Routes>
