@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import SimpleCard from '../components/widgets/card';
 import { Container, Row, Col } from 'react-bootstrap';
 import axiosInstance from '../config/axios'; // Assuming axiosInstance is in the utils folder
-
+import users from '../assets/3d-contact.png'
+import complaint from '../assets/complain.png'
+import en from '../assets/information.png'
 const Home = () => {
   const [counts, setCounts] = useState({
     complaint_count: 0,
@@ -32,21 +34,21 @@ const Home = () => {
             <SimpleCard
               title="Complaints"
               count={counts.complaint_count}
-              imageSrc="https://via.placeholder.com/50"
+              imageSrc={complaint}
             />
           </Col>
           <Col md={4}>
             <SimpleCard
               title="Enquiries"
               count={counts.enquiry_count}
-              imageSrc="https://via.placeholder.com/50"
+              imageSrc={en}
             />
           </Col>
           <Col md={4}>
             <SimpleCard
               title="Users"
               count={counts.users_count}
-              imageSrc="https://via.placeholder.com/50"
+              imageSrc={users}
             />
           </Col>
           {/* Add more cards for other counts if needed */}

@@ -27,3 +27,66 @@ nav {
     left: 50px;
     width: calc(100% - 50px);
 }
+
+/* Container and Form styling */
+.login-container {
+    width: 600px;
+    height: 400px;
+    padding: 20px;
+    background-color: #2e2e3e;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .login-title {
+    color: #f5f5f5;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .login-form-control {
+    background-color: #1e1e2f;
+    border: 1px solid #3f3f51;
+    color: #f5f5f5;
+    border-radius: 4px;
+  }
+  
+  .login-form-control:focus {
+    border-color: #6366f1;
+    box-shadow: none;
+  }
+  
+  .login-alert-danger {
+    background-color: #f05c5c;
+    color: #ffffff;
+    border: none;
+    text-align: center;
+  }
+  
+  /* Button styling */
+  .login-button-primary {
+    background-color: #6366f1;
+    color: #ffffff;
+    border: none;
+    width: 100%;
+  }
+  
+  .login-button-primary:hover {
+    background-color: #4c51bf;
+  }
+  
+  /* Eye icon styling for password visibility toggle */
+  .login-password-container {
+    position: relative;
+  }
+  
+  .login-eye-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #6366f1;
+  }
+  

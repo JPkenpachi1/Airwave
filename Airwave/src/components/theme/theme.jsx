@@ -18,7 +18,7 @@ const ThemeToggle = () => {
   };
 
   return (
-    <button className='themeButton' onClick={toggleTheme} >
+    <button className='themeButton' style={{color:'var(--text-color)'}} onClick={toggleTheme} >
       {theme === 'light' ? <FiMoon /> : <FiSun />}
     </button>
   );

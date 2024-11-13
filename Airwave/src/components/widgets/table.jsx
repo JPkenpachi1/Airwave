@@ -72,37 +72,50 @@ const ReusableTable = ({ columns, apiUrl, updateUrl, showActions = true }) => {
 
   return (
     <>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            {columns.map((column, index) => (
-              <th key={index}>{column}</th>
-            ))}
-            {showActions && <th>Actions</th>} {/* Conditionally adding the actions column */}
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((item, index) => (
-            <tr key={index}>
-              {columns.map((column, colIndex) => (
-                <td key={colIndex}>{item[column]}</td>
-              ))}
-              {showActions && (
-                <td>
-                  <Button
-                    variant="outline-primary"
-                    size="sm"
-                    onClick={() => handleShowModal(item)} // Open modal with selected row
-                  >
-                    <FaEye /> {/* Action icon */}
-                  </Button>
-                </td>
-              )}
-            </tr>
+    
+    <table
+      style={{
+        backgroundColor: 'var(--table-bg)',
+        color: 'var(--table-text-color)',
+        borderColor: 'var(--table-border-color)',
+      }}
+      className="materialTable "
+    >
+      <thead>
+        <tr>
+          {columns.map((column, index) => (
+            <th key={index} style={{ backgroundColor: 'var(--table-header-bg)', color: 'var(--table-header-text-color)' }}>
+              {column}
+            </th>
           ))}
-        </tbody>
-      </Table>
-
+          {showActions && <th>Actions</th>}
+        </tr>
+      </thead>
+      <tbody>
+        {data.map((item, index) => (
+          <tr key={index}>
+            {columns.map((column, colIndex) => (
+              <td key={colIndex}>{item[column]}</td>
+            ))}
+            {showActions && (
+              <td>
+                <Button
+                  style={{
+                    backgroundColor: 'var(--button-bg)',
+                    color: 'var(--button-text-color)',
+                    border: 'none',
+                  }}
+                  size="sm"
+                  onClick={() => handleShowModal(item)}
+                >
+                  <FaEye />
+                </Button>
+              </td>
+            )}
+          </tr>
+        ))}
+      </tbody>
+    </table>
       {/* Modal to show and edit row details */}
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>

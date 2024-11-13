@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
 import axiosInstance from '../config/axios';
+import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState(null);
 
     const handleSubmit = (e) => {
@@ -17,13 +18,10 @@ const Login = () => {
             password: password,
         };
 
-        axiosInstance.post('token/', loginData)
+        axiosInstance.post('login/', loginData)
             .then(response => {
-                // Save the JWT token to localStorage
                 localStorage.setItem('access_token', response.data.access);
                 localStorage.setItem('refresh_token', response.data.refresh);
-
-                // Redirect to a protected page or dashboard
                 window.location.href = '/';
             })
             .catch(err => {
@@ -32,12 +30,12 @@ const Login = () => {
     };
 
     return (
-        <Container>
-            <Row className="justify-content-md-center">
-                <Col md={6}>
-                    <h2 className="text-center">Login</h2>
-                    {error && <Alert variant="danger">{error}</Alert>}
-                    <Form onSubmit={handleSubmit}>
+        <div style={{display:'flex' ,justifyContent:'center' , alignItems:'center' , height:'100vh',width:'100%',backgroundColor:'#242424'}}>
+        <Container >
+         
+                    <h2 className="login-title">Login</h2>
+                    {error && <Alert className="login-alert-danger">{error}</Alert>}
+                    <Form className='login-container' onSubmit={handleSubmit}>
                         <Form.Group controlId="formEmail">
                             <Form.Label>Email address</Form.Label>
                             <Form.Control 
@@ -46,27 +44,36 @@ const Login = () => {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
+                                className="login-form-control"
                             />
                         </Form.Group>
 
-                        <Form.Group controlId="formPassword">
+                        <Form.Group controlId="formPassword" className="login-password-container">
                             <Form.Label>Password</Form.Label>
                             <Form.Control 
-                                type="password" 
+                                type={showPassword ? "text" : "password"} 
                                 placeholder="Password" 
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
+                                className="login-form-control"
                             />
+                            <span 
+                                className="login-eye-icon" 
+                                onClick={() => setShowPassword(!showPassword)}
+                            >
+                                {showPassword ? <FaEyeSlash /> : <FaEye />}
+                            </span>
                         </Form.Group>
 
-                        <Button variant="primary" type="submit" className="w-100 mt-3">
+                        <Button type="submit" className="login-button-primary mt-3">
                             Login
                         </Button>
                     </Form>
-                </Col>
-            </Row>
+              
+         
         </Container>
+        </div>
     );
 };
 

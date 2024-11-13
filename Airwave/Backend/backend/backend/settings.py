@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'airback',
     'rest_framework',
     'corsheaders',
+    'rest_framework_simplejwt.token_blacklist',
 ]
 
 MIDDLEWARE = [
@@ -85,7 +86,7 @@ DATABASES = {
         'ENGINE': 'mysql.connector.django',  # Use mysql-connector-python's engine
         'NAME': 'personal',               # Your MySQL database name
         'USER': 'root',                   # Your MySQL user
-        'PASSWORD': 'Trivont@2024',           # Your MySQL password
+        'PASSWORD': 'Trivont_123',           # Your MySQL password
         'HOST': 'localhost',                # Usually 'localhost' or '127.0.0.1'
         'PORT': '3306',                     # MySQL's default port is 3306
     }
@@ -117,11 +118,44 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ],
 }
+# settings.py
+
+import os
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'user_activity_file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'logs/user_activity.log'),
+            'formatter': 'verbose',
+        },
+    },
+    'loggers': {
+        'user_activity': {
+            'handlers': ['user_activity_file'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    },
+}
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'AUTH_HEADER_TYPES': ('Bearer',),
+     'BLACKLIST_AFTER_ROTATION': True,  # Ensure that blacklisted tokens are handled
 }
 
 

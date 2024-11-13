@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import RegisterView, TokenObtainPairView,EnquiryCreateView,EnquiryRetrieveView,TechnicianCreateView, ComplaintCreateView, ComplaintListView, ComplaintRetrieveUpdateView,UserProfileCreateView,UserProfileView,get_counts
+from .views import RegisterView, TokenObtainPairView,EnquiryCreateView,EnquiryRetrieveView,TechnicianCreateView, ComplaintCreateView, ComplaintListView, ComplaintRetrieveUpdateView,UserProfileCreateView,UserProfileView,get_counts,LoginView,LogoutView
 from rest_framework_simplejwt.views import TokenRefreshView
 
 urlpatterns = [
@@ -14,5 +14,8 @@ urlpatterns = [
     path('complaint/<int:id>/', ComplaintRetrieveUpdateView.as_view(), name='complaint-retrieve-update'), 
      path('user-profile/create', UserProfileCreateView.as_view(), name='user-profile-create'), # Add this line
      path('user-profiles/', UserProfileView.as_view(), name='user-profile list'),
-     path('counts/',get_counts,name="get_counts")
+     path('counts/',get_counts,name="get_counts"),
+     path('login/',LoginView.as_view(),name="login view"),
+
+     path('logout/', LogoutView.as_view(),name="logoutview")
 ]

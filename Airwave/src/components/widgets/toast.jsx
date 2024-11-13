@@ -23,7 +23,7 @@ const ToastComponent = ({
                 autohide
             >
                 <Toast.Header closeButton>
-                    <strong className="me-auto">Bootstrap Toast</strong>
+                    <strong className="me-auto"></strong>
                     <small>Just now</small>
                 </Toast.Header>
                 <Toast.Body className={variant === 'Dark' ? 'text-white' : ''}>

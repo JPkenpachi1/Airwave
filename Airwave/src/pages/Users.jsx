@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import axiosInstance from "../config/axios";
+import ToastComponent from "../components/widgets/toast"; // Import your ToastComponent
 
 const Users = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +11,10 @@ const Users = () => {
     address: "",
     username: "",
   });
+
+  const [toastMessage, setToastMessage] = useState("");
+  const [toastVariant, setToastVariant] = useState(""); // 'success' or 'danger'
+  const [showToast, setShowToast] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,17 +27,40 @@ const Users = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axiosInstance
-      .post("user-profile/create", formData) // Adjust your API URL accordingly
+      .post("user-profile/create", formData)
       .then((response) => {
         console.log("Form submitted successfully", response.data);
+        setToastMessage("Form submitted successfully!");
+        setToastVariant("success");
+        setShowToast(true);
+
+        // Reset the form
+        setFormData({
+          name: "",
+          phone: "",
+          phone2: "",
+          address: "",
+          username: "",
+        });
       })
       .catch((error) => {
         console.error("Error submitting form", error);
+        setToastMessage("Error submitting form. Please try again.");
+        setToastVariant("danger");
+        setShowToast(true);
       });
   };
 
   return (
     <Container>
+      {/* Toast Component for alert messages */}
+      <ToastComponent
+        variant={toastVariant}
+        message={toastMessage}
+        showToast={showToast}
+        setShowToast={setShowToast}
+      />
+
       <h2 className="mt-4 mb-4">User Profile Form</h2>
       <Form onSubmit={handleSubmit}>
         <Row>
@@ -116,8 +144,16 @@ const Users = () => {
         </Row>
 
         <Row>
-          <Col md={12} className="d-flex justify-content-center align-items-center">
-            <Button style={{width:'200px'}} variant="primary" type="submit" className="mt-3">
+          <Col
+            md={12}
+            className="d-flex justify-content-center align-items-center"
+          >
+            <Button
+              style={{ width: "200px" }}
+              variant="primary"
+              type="submit"
+              className="mt-3"
+            >
               Submit
             </Button>
           </Col>

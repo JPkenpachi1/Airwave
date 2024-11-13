@@ -23,8 +23,21 @@
   --secondary-color: #efefef;
   --form-bg:#f5f5f5;
   --from-border:1px solid #f5f5f5;
-  --text-color:#737373;
-
+  --text-color:#242424;
+  /* Table variables */
+  --table-bg: #f5f5f5;
+  --table-text-color: #212121;
+  --table-border-color: #e0e0e0;
+  --table-header-bg: #e8eaf6;
+  --table-header-text-color: #212121;
+  --button-bg: #6200ea;
+  --button-text-color: #ffffff;
+  
+    /* Tabs variables */
+    --tabs-bg: #ffffff;
+    --tabs-active-bg: #e7f1ff;
+    --tabs-border-color: #dee2e6;
+    --tabs-text-color: #212529;
 }
 
 /* Dark mode */
@@ -34,7 +47,22 @@
   --secondary-color: #2c2c2c;
   --form-bg:#404040;
   --form-border:1px solid #404040;
-  --text-color:#a3a3a3;
+  --text-color:#fafafa;
+
+
+    /* Table Specific Variables */
+    --table-bg: #1e1e1e;
+    --table-text-color: #ffffff;
+    --table-border-color: #333333;
+    --table-header-bg: #333333;
+    --table-header-text-color: #ffffff;
+    --button-bg: #bb86fc;
+    --button-text-color: #121212;
+    /* Tabs variables */
+    --tabs-bg: #343a40;
+    --tabs-active-bg: #495057;
+    --tabs-border-color: #454d55;
+    --tabs-text-color: #f8f9fa;
 }
 /* Dark mode theme */
 
@@ -47,7 +75,7 @@ a {
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: #556ee6;
 }
 
 body {
@@ -92,6 +120,7 @@ button:focus-visible {
 }
 .form-control:focus{
   background-color: var(--form-bg);
+  color: var(--text-color);
 }
 .form-control::placeholder{
   color: var(--text-color);
@@ -154,4 +183,77 @@ button:focus-visible {
 }
 .home_container{
   margin: 10px;
+}
+
+.custom-card {
+  width: 18rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: var(--form-bg); /* Use custom property for background */
+  color: var(--text-color); /* Use custom property for text color */
+}
+
+.custom-card-body {
+  flex: 1;
+}
+
+.custom-card-img {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-card-img img {
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+}
+table {
+  background-color: var(--table-bg);
+  color: var(--table-text-color);
+  border-color: var(--table-border-color);
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th, table td {
+  color: var(--table-text-color);
+  padding: 12px 16px;
+  border: 1px solid var(--table-border-color);
+}
+
+table th {
+  background-color: var(--table-header-bg);
+  color: var(--table-header-text-color);
+  text-align: left;
+}
+
+table .btn {
+  background-color: var(--button-bg);
+  color: var(--button-text-color);
+  border: none;
+}
+
+table .btn:hover {
+  background-color: var(--secondary-color);
+  color: var(--text-primary);
+}
+
+
+/* Applying the variables to tabs styling */
+.nav-tabs {
+  background-color: var(--tabs-bg);
+  border-bottom: 1px solid var(--tabs-border-color);
+}
+
+.nav-tabs .nav-link {
+  color: var(--tabs-text-color);
+}
+
+.nav-tabs .nav-link.active {
+  background-color: var(--tabs-active-bg);
+  color: var(--font-color);
+  border-color: var(--tabs-border-color);
 }
