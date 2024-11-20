@@ -30,48 +30,46 @@ const Login = () => {
     };
 
     return (
-        <div style={{display:'flex' ,justifyContent:'center' , alignItems:'center' , height:'100vh',width:'100%',backgroundColor:'#242424'}}>
-        <Container >
-         
-                    <h2 className="login-title">Login</h2>
-                    {error && <Alert className="login-alert-danger">{error}</Alert>}
-                    <Form className='login-container' onSubmit={handleSubmit}>
-                        <Form.Group controlId="formEmail">
-                            <Form.Label>Email address</Form.Label>
-                            <Form.Control 
-                                type="email" 
-                                placeholder="Enter email" 
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                required
-                                className="login-form-control"
-                            />
-                        </Form.Group>
+        <div className='loginPage'>
+        <Container className=' d-flex justify-content-center align-items-center flex-column '>
+            
+            <Form className='login-container' onSubmit={handleSubmit}>
+            <h2 className="text-center mt-4 mb-2">Login</h2>
+            {error && <Alert variant="danger">{error}</Alert>}
+                <Form.Group controlId="formEmail" className='mb-4'>
+                    <Form.Label className='fw-bold fs-6'>Email address</Form.Label>
+                    <Form.Control 
+                        type="email" 
+                        className='login-form-control'
+                        placeholder="Enter email" 
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                </Form.Group>
 
-                        <Form.Group controlId="formPassword" className="login-password-container">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control 
-                                type={showPassword ? "text" : "password"} 
-                                placeholder="Password" 
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                required
-                                className="login-form-control"
-                            />
-                            <span 
-                                className="login-eye-icon" 
-                                onClick={() => setShowPassword(!showPassword)}
-                            >
-                                {showPassword ? <FaEyeSlash /> : <FaEye />}
-                            </span>
-                        </Form.Group>
+                <Form.Group controlId="formPassword" className='mb-4'>
+                    <Form.Label className='fw-bold fs-6'>Password</Form.Label>
+                    <Form.Control 
+                        type={showPassword ? "text" : "password"} 
+                        placeholder="Password" 
+                        className='login-form-control'
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                    {/* <span 
+                        style={{ position: 'absolute', right: '10px', top: '35px', cursor: 'pointer' }} 
+                        onClick={() => setShowPassword(!showPassword)}
+                    >
+                        {showPassword ? <FaEyeSlash /> : <FaEye />}
+                    </span> */}
+                </Form.Group>
 
-                        <Button type="submit" className="login-button-primary mt-3">
-                            Login
-                        </Button>
-                    </Form>
-              
-         
+                <button   type="submit"  className=" mt-4 login-button-primary" >
+                    Login
+                </button>
+            </Form>
         </Container>
         </div>
     );
