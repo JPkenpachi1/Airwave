@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axiosInstance from '../config/axios';
-import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
+import { Form, Button, Container, Alert } from 'react-bootstrap';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-
+import './pages.css'
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -48,28 +48,30 @@ const Login = () => {
                     />
                 </Form.Group>
 
-                <Form.Group controlId="formPassword" className='mb-4'>
-                    <Form.Label className='fw-bold fs-6'>Password</Form.Label>
-                    <Form.Control 
-                        type={showPassword ? "text" : "password"} 
-                        placeholder="Password" 
-                        className='login-form-control'
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                    {/* <span 
-                        style={{ position: 'absolute', right: '10px', top: '35px', cursor: 'pointer' }} 
-                        onClick={() => setShowPassword(!showPassword)}
-                    >
-                        {showPassword ? <FaEyeSlash /> : <FaEye />}
-                    </span> */}
-                </Form.Group>
+                        <Form.Group controlId="formPassword" className="login-password-container">
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control 
+                                type={showPassword ? "text" : "password"} 
+                                placeholder="Password" 
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                                className="login-form-control"
+                            />
+                            <span 
+                                className="login-eye-icon" 
+                                onClick={() => setShowPassword(!showPassword)}
+                            >
+                                {showPassword ? <FaEyeSlash /> : <FaEye />}
+                            </span>
+                        </Form.Group>
 
-                <button   type="submit"  className=" mt-4 login-button-primary" >
-                    Login
-                </button>
-            </Form>
+                        <Button type="submit" className="login-button-primary mt-3">
+                            Login
+                        </Button>
+                    </Form>
+              
+         
         </Container>
         </div>
     );

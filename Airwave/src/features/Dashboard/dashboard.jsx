@@ -3,6 +3,7 @@ import Sidebar from '../../components/Sidebar/sidebar';
 import NavBar from '../../components/Navbar/navbar';
 import { Outlet } from 'react-router-dom';
 import '../../components/Navbar/navabar.css'
+import Home from '../../pages/home';
 const Dashboard = () => {
     const [isClicked, setIsClicked] = useState(false);
     const [sidebarclick, sidebarClicked] = useState(false);
@@ -24,6 +25,7 @@ const Dashboard = () => {
                 handleClick={handleClick}
             />
             <div>
+               
             <div className={`dashboard__container ${navToggle ? 'nav-collapsed' : ''}`}>
                 <Outlet />
             </div>

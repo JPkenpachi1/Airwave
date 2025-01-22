@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Table, Spinner, Alert, Button, Modal, Form } from 'react-bootstrap';
+import { Table, Spinner, Alert, Button, Modal, Form, Row, Col } from 'react-bootstrap';
 import { FaEye } from 'react-icons/fa'; // Icon for the action button
 import axiosInstance from '../../config/axios'; // Update this to your axios instance
 
@@ -118,33 +118,38 @@ const ReusableTable = ({ columns, apiUrl, updateUrl, showActions = true }) => {
     </table>
       {/* Modal to show and edit row details */}
       <Modal show={showModal} onHide={handleCloseModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>Edit Row</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form onSubmit={handleFormSubmit}>
-            {columns.map((column, index) => (
-              <Form.Group key={index}>
-                <Form.Label>{column}</Form.Label>
-                <Form.Control
-                  type="text"
-                  name={column}
-                  value={formData[column] || ''}
-                  onChange={handleInputChange}
-                />
-              </Form.Group>
-            ))}
-            <Button variant="primary" type="submit">
-              Save Changes
-            </Button>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseModal}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
+            <Modal.Header closeButton>
+                <Modal.Title>Edit Row</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <Form onSubmit={handleFormSubmit}>
+                    <Row>
+                        {columns.map((column, index) => (
+                            <Col key={index} md={6} className="mb-3">
+                                {/* Each field occupies 1/2 of a row (6/12 in Bootstrap grid) */}
+                                <Form.Group>
+                                    <Form.Label>{column}</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        name={column}
+                                        value={formData[column] || ''}
+                                        onChange={handleInputChange}
+                                    />
+                                </Form.Group>
+                            </Col>
+                        ))}
+                    </Row>
+                    <Button className="mt-3 mb-4" variant="primary" type="submit">
+                        Save Changes
+                    </Button>
+                </Form>
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="secondary" onClick={handleCloseModal}>
+                    Close
+                </Button>
+            </Modal.Footer>
+        </Modal>
     </>
   );
 };

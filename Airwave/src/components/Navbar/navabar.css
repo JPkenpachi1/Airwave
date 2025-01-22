@@ -116,3 +116,10 @@ nav {
     color: #6366f1;
   }
   
+  .modal-content{
+    background-color: var(--table-bg) !important ;
+  }
+
+  .btn-close{
+    color: var(--text-color) !important;
+  }
