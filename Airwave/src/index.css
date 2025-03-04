@@ -38,6 +38,14 @@
     --tabs-active-bg: #e7f1ff;
     --tabs-border-color: #dee2e6;
     --tabs-text-color: #212529;
+    --status-open-bg: #ffcc00;  /* Yellow */
+    --status-open-text: black;
+  
+    --status-resolved-bg: #4caf50; /* Green */
+    --status-resolved-text: white;
+  
+    --status-inprogress-bg: #2196f3; /* Blue */
+    --status-inprogress-text: white;
 }
 
 /* Dark mode */
@@ -63,6 +71,9 @@
     --tabs-active-bg: #495057;
     --tabs-border-color: #454d55;
     --tabs-text-color: #f8f9fa;
+    --status-resolved-bg: #4caf5091; /* Dark mode adjusted green */
+  --status-open-bg: #ffcc0091; /* Dark mode yellow */
+  --status-inprogress-bg: #2196f391; /* Dark mode blue */
 }
 /* Dark mode theme */
 
@@ -256,4 +267,32 @@ table .btn:hover {
   background-color: var(--tabs-active-bg);
   color: var(--font-color);
   border-color: var(--tabs-border-color);
+}
+
+
+
+.DonutChart{
+  background-color: var(--form-bg);
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  color: var(--text-color);
+
+}
+
+.apexcharts-legend-text {
+  color: var(--text-color) !important;
+}
+.apexcharts-title-text {
+  fill: var(--text-color);
+}
+
+.btn-primary {
+  background-color: #f34570 !important; /* Change background color */
+  border-color: #e64a19 !important;    /* Change border color */
+  color: white !important;             /* Text color */
+  font-weight: bold;                    /* Make text bold */
+  padding: 12px 14px;                   /* Adjust padding */
+  border-radius: 8px;                   /* Rounded corners */
+  transition: all 0.3s ease-in-out;      /* Smooth hover effect */
 }

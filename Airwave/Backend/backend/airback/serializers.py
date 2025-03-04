@@ -5,6 +5,12 @@ from .models import Technician, Complaint
 from .models import Enquiry
 User = get_user_model()
 
+from rest_framework import serializers
+from django.contrib.auth import get_user_model
+from rest_framework_simplejwt.tokens import RefreshToken
+
+User = get_user_model()
+
 class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -23,9 +29,17 @@ class RegisterSerializer(serializers.ModelSerializer):
             first_name=validated_data['first_name'],
             last_name=validated_data['last_name'],
         )
-        user.set_password(validated_data['password'])
+        user.set_password(validated_data['password'])  # Hash the password
         user.save()
         return user
+
+class LoginSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    password = serializers.CharField(write_only=True)
+
+class LogoutSerializer(serializers.Serializer):
+    refresh_token = serializers.CharField()
+
 
 class TokenObtainPairSerializer(serializers.Serializer):
     email = serializers.EmailField()

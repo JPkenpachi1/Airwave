@@ -12,22 +12,25 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setError(null);
-
+    
         const loginData = {
             email: email,
             password: password,
         };
-
+    
         axiosInstance.post('login/', loginData)
             .then(response => {
-                localStorage.setItem('access_token', response.data.access);
-                localStorage.setItem('refresh_token', response.data.refresh);
-                window.location.href = '/';
+                console.log("API Response:", response.data); // Check if data is returned
+                localStorage.setItem('access_token', response.data.access || response.data.access_token);
+                localStorage.setItem('refresh_token', response.data.refresh || response.data.refresh_token);
+                window.location.href = '/home';
             })
             .catch(err => {
+                console.error("Login error:", err.response?.data || err.message);
                 setError('Invalid email or password');
             });
     };
+    
 
     return (
         <div className='loginPage'>

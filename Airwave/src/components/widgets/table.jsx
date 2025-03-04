@@ -149,7 +149,7 @@ const ReusableTable = ({ columns, apiUrl, updateUrl, showActions = true }) => {
                     Close
                 </Button>
             </Modal.Footer>
-        </Modal>
+        </Modal>c
     </>
   );
 };

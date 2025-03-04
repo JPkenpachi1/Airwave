@@ -8,7 +8,7 @@ const axiosInstance = axios.create({
   },
 });
 
-// Add a request interceptor to attach access token
+// Request Interceptor to attach the access token
 axiosInstance.interceptors.request.use(
   (config) => {
     const accessToken = localStorage.getItem('access_token');
@@ -17,39 +17,39 @@ axiosInstance.interceptors.request.use(
     }
     return config;
   },
-  (error) => {
-    return Promise.reject(error);
-  }
+  (error) => Promise.reject(error)
 );
 
-// Add a response interceptor to handle token refresh
+// Response Interceptor for handling 401 errors and refreshing token
 axiosInstance.interceptors.response.use(
-  (response) => {
-    return response;
-  },
+  (response) => response,
   async (error) => {
     const originalRequest = error.config;
     
-    if (error.response.status === 401 && !originalRequest._retry) {
+    // Check if it's a 401 error and not retried before
+    if (error.response && error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       
       const refreshToken = localStorage.getItem('refresh_token');
       
-      try {
-        const response = await axios.post('http://localhost:8000/api/token/refresh/', {
-          refresh: refreshToken,
-        });
+      if (refreshToken) {
+        try {
+          const response = await axios.post('http://localhost:8000/api/token/refresh/', {
+            refresh: refreshToken,
+          });
 
-        localStorage.setItem('access_token', response.data.access);
+          // Store new access token
+          localStorage.setItem('access_token', response.data.access);
 
-        // Retry the original request with the new access token
-        originalRequest.headers['Authorization'] = `Bearer ${response.data.access}`;
-        return axiosInstance(originalRequest);
-      } catch (err) {
-        console.log('Refresh token expired or invalid.');
-        localStorage.removeItem('access_token');
-        localStorage.removeItem('refresh_token');
-        window.location.href = '/login'; // Redirect to login if refresh token fails
+          // Retry the original request with the new token
+          originalRequest.headers['Authorization'] = `Bearer ${response.data.access}`;
+          return axiosInstance(originalRequest);
+        } catch (err) {
+          console.error('Refresh token expired or invalid.');
+          localStorage.removeItem('access_token');
+          localStorage.removeItem('refresh_token');
+          window.location.href = '/login'; // Redirect user to login
+        }
       }
     }
 
